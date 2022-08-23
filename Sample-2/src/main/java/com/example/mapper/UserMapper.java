@@ -17,10 +17,14 @@ public interface UserMapper {
 
 	@Mapping(source = "userId", target = "id")
 	@Mapping(source = "userName", target = "name")
-	User converDtoToUser(UserDto dto);
+	User convertDtoToUser(UserDto dto);
 
 	@Mapping(source = "id", target = "userId")
 	@Mapping(source = "name", target = "userName")
-	List<User> convertUserToDto(List<User> listUsers);
+	List<UserDto> convertUserToDto(List<User> listUsers);
+
+	@Mapping(source = "userId", target = "id")
+	@Mapping(source = "userName", target = "name")
+	List<User> convertDtoToUser(List<UserDto> dtos);
 
 }

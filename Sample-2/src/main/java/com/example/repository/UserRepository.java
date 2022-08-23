@@ -8,8 +8,4 @@ import com.example.model.User;
 @Repository
 public interface UserRepository extends CrudRepository<User, Integer> {
 
-	public static void update(User userDto, int id) {
-
-	}
-
 }

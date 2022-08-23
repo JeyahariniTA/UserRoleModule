@@ -17,7 +17,6 @@ import org.springframework.web.bind.annotation.RestController;
 
 import com.example.exception.CustomException;
 import com.example.mapper.UserMapper;
-import com.example.model.Role;
 import com.example.model.User;
 import com.example.model.UserDto;
 import com.example.service.UserService;
@@ -39,34 +38,53 @@ public class UserController {
 
 	@GetMapping(path = "/get")
 	@ResponseBody
-	public List<User> getUsers() {
-		return userMapper.convertUserToDto(dao.listUsers());
+	public List<UserDto> getUsers() {
+		return dao.listUsers();
 	}
 
 	@GetMapping(path = "/get/{userId}")
 	@ResponseBody
 	public UserDto getUserById(@PathVariable("userId") int userId) {
-		return userMapper.convertUserToDto(dao.getUserById(userId));
+		return dao.getUserById(userId);
 	}
-	
-//	@GetMapping(path = "/get/{pageNo}/{userCount}")
-//	@ResponseBody
-//	public UserDto getUsersWithPagination(@PathVariable("pageNo") int pageNo, @PathVariable("userCount") int userCount) {
-//		return userMapper.convertUserToDto(dao.getUserById(userId));
-//	}
+
+	@GetMapping(path = "/get/{pageNo}/{userCount}")
+	@ResponseBody
+	public List<UserDto> getUsersWithPagination(@PathVariable("pageNo") int pageNo,
+			@PathVariable("userCount") int userCount) {
+		return dao.listUsersWithPagination(pageNo, userCount);
+	}
 
 	@PostMapping(path = "/add")
-	public User addUser(@RequestBody User user) {
-		String dob = user.getUserdetails().getDob();
-		// System.out.println("date: " + dob);
-		String regex = "^([0-9]{4})-(3[01]|[12][0-9]|0[1-9])-(1[0-2]|0[1-9])$";
-		boolean isValidDate = dob.matches(regex);
-		if (isValidDate && !dob.isEmpty()) {
-			// System.out.println("matches");
-			return dao.addUser(user);
+	public ResponseEntity<Object> addUser(@RequestBody User user) {
+		if (null != user.getUserdetails() && null != user.getUserdetails().getDob()) {
+			boolean isValidDate = false;
+			String dob = user.getUserdetails().getDob();
+			String regex = "^([0-9]{4})-(3[01]|[12][0-9]|0[1-9])-(1[0-2]|0[1-9])$";
+			isValidDate = dob.matches(regex);
+
+			if (isValidDate) {
+				UserDto userDto = dao.addUser(user);
+				if (userDto.getUserId() == 0) {
+					throw new CustomException("User not exists", HttpStatus.NOT_FOUND);
+				} else {
+					return new ResponseEntity<>(userDto, HttpStatus.OK);
+				}
+			} else {
+//			userDto.setError("Entry not added. Please provide valid date format - (yyyy-mm-dd)");
+				// if (userDto.getId() != 0) {
+//			throw new CustomBadRequestException("Entry not added. Please provide valid date format - (yyyy-mm-dd)");
+				throw new CustomException("Entry not added. Please provide valid date format - (yyyy-mm-dd)",
+						HttpStatus.BAD_REQUEST);
+				// }
+			}
 		} else {
-			user.setError("Entry not added. Please provide valid date format - (yyyy-mm-dd)");
-			return user;
+			UserDto userDto = dao.addUser(user);
+			if (userDto.getUserId() == 0) {
+				throw new CustomException("User not exists", HttpStatus.NOT_FOUND);
+			} else {
+				return new ResponseEntity<>(userDto, HttpStatus.OK);
+			}
 		}
 	}
 
@@ -77,38 +95,49 @@ public class UserController {
 	}
 
 	@PutMapping(path = "/update")
-	public ResponseEntity<Object> updateUserById(@RequestBody User userDto) {
-		boolean isValidDate = false;
-		String dob = userDto.getUserdetails().getDob();
-		String regex = "^([0-9]{4})-(3[01]|[12][0-9]|0[1-9])-(1[0-2]|0[1-9])$";
-		isValidDate = dob.matches(regex);
-
-		if (isValidDate) {
-			userDto = dao.updateById(userDto);
-			if (userDto.getId() == 0) {
+	public ResponseEntity<Object> updateUserById(@RequestBody User user) {
+		if (null != user.getUserdetails() && null != user.getUserdetails().getDob()) {
+			boolean isValidDate = false;
+			String dob = user.getUserdetails().getDob();
+			String regex = "^([0-9]{4})-(3[01]|[12][0-9]|0[1-9])-(1[0-2]|0[1-9])$";
+			isValidDate = dob.matches(regex);
+			UserDto userDto;
+			if (isValidDate) {
+				userDto = dao.updateById(user);
+				if (userDto.getUserId() == 0) {
+					throw new CustomException("User not exists", HttpStatus.NOT_FOUND);
+				} else {
+					return new ResponseEntity<>(userDto, HttpStatus.OK);
+				}
+			} else {
+//			userDto.setError("Entry not added. Please provide valid date format - (yyyy-mm-dd)");
+				// if (userDto.getId() != 0) {
+//			throw new CustomBadRequestException("Entry not added. Please provide valid date format - (yyyy-mm-dd)");
+				throw new CustomException("Entry not added. Please provide valid date format - (yyyy-mm-dd)",
+						HttpStatus.BAD_REQUEST);
+				// }
+			}
+		} else {
+			UserDto userDto = dao.updateById(user);
+			if (userDto.getUserId() == 0) {
 				throw new CustomException("User not exists", HttpStatus.NOT_FOUND);
 			} else {
 				return new ResponseEntity<>(userDto, HttpStatus.OK);
 			}
-		} else {
-			userDto.setError("Entry not added. Please provide valid date format - (yyyy-mm-dd)");
-			// if (userDto.getId() != 0) {
-//			throw new CustomBadRequestException("Entry not added. Please provide valid date format - (yyyy-mm-dd)");
-			throw new CustomException("Entry not added. Please provide valid date format - (yyyy-mm-dd)",
-					HttpStatus.BAD_REQUEST);
-			// }
 		}
 	}
 
 	@GetMapping(path = "/getByRoleId/{roleId}")
 	@ResponseBody
-	public List<User> getUsersByRoleId(@PathVariable("roleId") int roleId) {
-		List<User> users = dao.getUsersByRoleId(roleId);
-		return users;
+	public List<UserDto> getUsersByRoleId(@PathVariable("roleId") int roleId) {
+		List<UserDto> userDtos = dao.getUsersByRoleId(roleId);
+		return userDtos;
 	}
 
-	@GetMapping(path = "/findRolesByUserId/{userId}")
-	public List<Role> findRolesByUserId(@PathVariable("userId") int userId) {
-		return dao.getRolesByUserId(userId);
-	}
+	/*
+	 * @GetMapping(path = "/findRolesByUserId/{userId}") public
+	 * ResponseEntity<Object> findRolesByUserId(@PathVariable("userId") int userId)
+	 * { RoleDto roleDto = dao.getRoleByUserId(userId); return new
+	 * ResponseEntity<>(roleDto, HttpStatus.OK); }
+	 */
 }

@@ -15,7 +15,7 @@ import javax.persistence.Table;
 public class Project {
 
 	@Id
-	@GeneratedValue(strategy = GenerationType.AUTO)
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private int id;
 
 	@Column(name = "name")
@@ -24,7 +24,7 @@ public class Project {
 	@Column(name = "description")
 	private String description;
 
-	@ManyToMany(mappedBy = "projects")
+	@ManyToMany
 	private List<User> users;
 
 	public int getId() {

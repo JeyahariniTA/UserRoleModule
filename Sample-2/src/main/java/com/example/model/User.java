@@ -16,9 +16,11 @@ import javax.persistence.OneToMany;
 import javax.persistence.OneToOne;
 import javax.persistence.Table;
 
+import com.example.auditable.Auditable;
+
 @Entity
 @Table(name = "users")
-public class User {
+public class User extends Auditable {
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	@Column(name = "id")
@@ -39,12 +41,11 @@ public class User {
 	@JoinColumn(name = "user_id", referencedColumnName = "id")
 	private List<Address> address;
 
-	@ManyToOne
+	@ManyToOne(cascade = CascadeType.ALL)
 	private Role role;
 
 	@ManyToMany
-	@JoinTable(name = "usersProjectsMapping", joinColumns = @JoinColumn(name = "user_id", referencedColumnName = "id"),
-	inverseJoinColumns = @JoinColumn(name = "project_id", referencedColumnName = "id"))
+	@JoinTable(name = "usersProjectsMapping", joinColumns = @JoinColumn(name = "user_id", referencedColumnName = "id"), inverseJoinColumns = @JoinColumn(name = "project_id", referencedColumnName = "id"))
 	private List<Project> projects;
 
 //	@OneToMany(cascade = CascadeType.ALL)
@@ -122,6 +123,10 @@ public class User {
 
 	public void setError(String error) {
 		this.error = error;
+	}
+
+	public String toString() {
+		return "id: " + this.id + " name: " + this.name;
 	}
 
 }

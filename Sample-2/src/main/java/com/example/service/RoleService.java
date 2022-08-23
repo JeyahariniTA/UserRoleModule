@@ -3,17 +3,20 @@ package com.example.service;
 import java.util.List;
 
 import com.example.model.Role;
+import com.example.model.RoleDto;
 
 public interface RoleService {
 
-	public List<Role> listRoles();
+	public List<RoleDto> listRoles();
 
-	public Role addRole(Role roleDto);
+	public RoleDto addRole(Role role);
 
-	public List<Role> getRoleByName(String roleName);
+	public List<RoleDto> getRoleByName(String roleName);
 
-	public Role updateRole(Role roleDto);
+	public RoleDto updateRole(Role role);
 
 	public String deleteRole(int id);
+
+	RoleDto findRoleByUserId(int userId);
 
 }
