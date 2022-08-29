@@ -15,10 +15,10 @@ import org.springframework.data.jpa.domain.support.AuditingEntityListener;
 
 @MappedSuperclass
 @EntityListeners(AuditingEntityListener.class)
-public abstract class Auditable {
+public class Auditable {
 
 	@CreatedBy
-	@Column(name = "createdBy", columnDefinition = " varchar(50) default  'Harini'", nullable = false)
+	@Column(name = "createdBy", columnDefinition = " varchar(50) default  'Harini'", nullable = false, updatable = false)
 	private String createdBy;
 
 	@LastModifiedBy

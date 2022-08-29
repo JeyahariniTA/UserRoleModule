@@ -1,5 +1,6 @@
 package com.example.model;
 
+import java.io.Serializable;
 import java.util.List;
 
 import javax.persistence.Column;
@@ -12,9 +13,11 @@ import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
 import com.example.auditable.Auditable;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 
 @Entity
 @Table(name = "role")
+//@JsonIgnoreProperties({"hibernateLazyInitializer"})
 public class Role extends Auditable {
 
 	@Id
@@ -24,8 +27,14 @@ public class Role extends Auditable {
 	@Column(name = "name")
 	private String role;
 
-	@OneToMany(mappedBy = "role")
+//	@OneToMany(mappedBy = "role")
+//	@JsonManagedReference
+	@OneToMany(mappedBy = "role", fetch = FetchType.LAZY)
+	// @JsonBackReference
+	@JsonIgnore
 	private List<User> users;
+//	@JoinColumn(name = "roleId")
+//	@JsonBackReference
 
 	public int getId() {
 		return id;
@@ -49,6 +58,10 @@ public class Role extends Auditable {
 
 	public void setRole(String role) {
 		this.role = role;
+	}
+
+	public String toString() {
+		return "{roleid: " + id + "role: " + role + "}";
 	}
 
 }

@@ -1,15 +1,48 @@
 package com.example.model;
 
+import java.io.Serializable;
 import java.util.List;
 
-public class UserDto extends AuditableDto {
+import com.fasterxml.jackson.annotation.JsonInclude;
 
+@JsonInclude(JsonInclude.Include.NON_NULL)
+public class UserDto implements Serializable {
+
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 4999671781205117900L;
 	private int userId;
 	private String userName;
-	private UserDetails userdetails;
-	private List<Address> address;
-	private Role role;
+	private List<Address> addresses;
+	private RoleDto role;
 	private List<Project> projects;
+	private String dob;
+	private String gender;
+
+	public String getDob() {
+		return dob;
+	}
+
+	public void setRole(RoleDto role) {
+		this.role = role;
+	}
+
+	public void setDob(String dob) {
+		this.dob = dob;
+	}
+
+	public RoleDto getRole() {
+		return role;
+	}
+
+	public String getGender() {
+		return gender;
+	}
+
+	public void setGender(String gender) {
+		this.gender = gender;
+	}
 
 	public int getUserId() {
 		return userId;
@@ -27,36 +60,20 @@ public class UserDto extends AuditableDto {
 		this.userName = userName;
 	}
 
-	public UserDetails getUserdetails() {
-		return userdetails;
-	}
-
-	public void setUserdetails(UserDetails userdetails) {
-		this.userdetails = userdetails;
-	}
-
-	public List<Address> getAddress() {
-		return address;
-	}
-
-	public void setAddress(List<Address> address) {
-		this.address = address;
-	}
-
-	public Role getRole() {
-		return role;
-	}
-
-	public void setRole(Role role) {
-		this.role = role;
-	}
-
 	public List<Project> getProjects() {
 		return projects;
 	}
 
 	public void setProjects(List<Project> projects) {
 		this.projects = projects;
+	}
+
+	public List<Address> getAddresses() {
+		return addresses;
+	}
+
+	public void setAddresses(List<Address> addresses) {
+		this.addresses = addresses;
 	}
 
 }

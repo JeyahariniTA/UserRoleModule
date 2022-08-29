@@ -1,11 +1,19 @@
 package com.example.model;
 
-public class RoleDto extends AuditableDto {
+import java.io.Serializable;
+import java.util.List;
 
+import com.fasterxml.jackson.annotation.JsonFilter;
+
+//@JsonFilter("roleFilter")
+public class RoleDto implements Serializable {
+
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = -4500171365420053190L;
 	private int roleId;
 	private String roleName;
-
-	private User user;
 
 	public String getRoleName() {
 		return roleName;
@@ -23,12 +31,6 @@ public class RoleDto extends AuditableDto {
 		this.roleId = roleId;
 	}
 
-	public User getUser() {
-		return user;
-	}
-
-	public void setUser(User user) {
-		this.user = user;
-	}
+	
 
 }

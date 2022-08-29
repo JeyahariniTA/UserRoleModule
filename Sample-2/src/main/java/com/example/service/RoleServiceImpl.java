@@ -5,7 +5,7 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import com.example.mapper.RoleMapper;
+import com.example.converter.RoleConverter;
 import com.example.model.Role;
 import com.example.model.RoleDto;
 import com.example.repository.RoleRepository;
@@ -17,28 +17,28 @@ public class RoleServiceImpl implements RoleService {
 	RoleRepository roleRepository;
 
 	@Autowired
-	RoleMapper roleMapper;
+	RoleConverter roleConverter;
 
 	@Override
 	public List<RoleDto> listRoles() {
-		return roleMapper.convertRoleToDto(roleRepository.findAll());
+		return roleConverter.convertRolesToDtos(roleRepository.findAll());
 	}
 
 	@Override
 	public RoleDto addRole(Role role) {
-		return roleMapper.convertRoleToDto(roleRepository.save(role));
+		return roleConverter.convertRoleToDto(roleRepository.save(role));
 	}
 
 	@Override
 	public List<RoleDto> getRoleByName(String roleName) {
-		return roleMapper.convertRoleToDto(roleRepository.findByRole(roleName));
+		return roleConverter.convertRolesToDtos(roleRepository.findByRole(roleName));
 	}
 
 	@Override
 	public RoleDto updateRole(Role role) {
 		if (roleRepository.existsById(role.getId())) {
 //			roleRepository.
-			return roleMapper.convertRoleToDto(roleRepository.save(role));
+			return roleConverter.convertRoleToDto(roleRepository.save(role));
 		} else {
 			return new RoleDto();
 		}
@@ -56,10 +56,11 @@ public class RoleServiceImpl implements RoleService {
 
 	@Override
 	public RoleDto findRoleByUserId(int userId) {
-		return roleMapper.convertRoleToDto(roleRepository.findByUsers_Id(userId)); // Role
+		return roleConverter.convertRoleToDto(roleRepository.findByUsers_Id(userId)); // Role
 //		role = roleRepository.getReferenceById(userId); //
 //		System.out.println(roleMapper.convertRoleToDto(role)); // return new
 //		RoleDto();
+//		return new RoleDto();
 	}
 
 }

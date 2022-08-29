@@ -1,12 +1,21 @@
 package com.example.model;
 
+import java.io.Serializable;
 import java.time.LocalDateTime;
 
-public class AuditableDto {
+public class AuditableDto implements Serializable {
 
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1429500593292406446L;
 	private String createdBy;
 	private String updatedBy;
+//	@JsonDeserialize(using = LocalDateTimeDeserializer.class)
+//	@JsonSerialize(using = LocalDateTimeSerializer.class)
 	private LocalDateTime createdOn;
+//	@JsonDeserialize(using = LocalDateTimeDeserializer.class)
+//	@JsonSerialize(using = LocalDateTimeSerializer.class)
 	private LocalDateTime updatedOn;
 	private int rowVersion;
 
