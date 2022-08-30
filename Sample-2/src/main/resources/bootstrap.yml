@@ -15,9 +15,11 @@ spring:
       token: 00000000-0000-0000-0000-000000000000
       scheme: http
       kv:
-        enabled: true  
+        enabled: true
+        backend: tcds/kv/app-name
+        application-name: config-server-client
   config:
-    import: vault:// 
+    import: vault://secret/config-server-client
   cache:
     type: redis
     redis:

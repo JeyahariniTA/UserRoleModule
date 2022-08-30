@@ -82,7 +82,6 @@ public class UserServiceImpl implements UserService {
 	public UserDto updateById(User user) {
 		if (jpaRepository.existsById(user.getId())) {
 			template.opsForHash().put(HASH_KEY, user.getId(), user);
-//			System.out.println("user: " + user.toString());
 			return userConverter.convertUserToDto(jpaRepository.save(user));
 		} else {
 			return new UserDto();
@@ -106,10 +105,6 @@ public class UserServiceImpl implements UserService {
 		List<UserDto> list = new ArrayList<>();
 		PageRequest pageReq = PageRequest.of(pageNo, usersCount);
 //		jpaRepository.findAll(pageReq).forEach(users -> list.add(userConverter.convertUserToDto(users)));
-		List<User> userList = jpaRepository.findAll(pageReq).getContent();
-		for (User user : userList) {
-			System.out.println("id: " + user.getId());
-		}
 		list = userConverter.convertUsersToDtos(jpaRepository.findAll(pageReq).getContent());
 
 		return list;
@@ -122,7 +117,6 @@ public class UserServiceImpl implements UserService {
 		if (jpaRepository.existsById(id)) {
 			User user = jpaRepository.findById(id).get();
 			user.setGender(gender);
-			System.out.println("user: " + user.toString());
 			userDto = userConverter.convertUserToDto(jpaRepository.save(user));
 		}
 		return userDto;
@@ -158,7 +152,6 @@ public class UserServiceImpl implements UserService {
 		if (jpaRepository.existsById(id)) {
 			User user = jpaRepository.findById(id).get();
 			User userPatched = applyPatchToUser(patch, user);
-			System.out.println("userPatched: " + userPatched.getDob());
 			updateById(userPatched);
 		}
 

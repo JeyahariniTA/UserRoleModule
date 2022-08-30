@@ -16,14 +16,10 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.example.converter.UserConverter;
 import com.example.exception.CustomException;
 import com.example.model.User;
 import com.example.model.UserDto;
 import com.example.service.UserService;
-import com.fasterxml.jackson.core.JsonProcessingException;
-import com.github.fge.jsonpatch.JsonPatch;
-import com.github.fge.jsonpatch.JsonPatchException;
 
 import io.swagger.v3.oas.annotations.security.SecurityRequirement;
 
@@ -33,9 +29,6 @@ import io.swagger.v3.oas.annotations.security.SecurityRequirement;
 public class UserController {
 	@Autowired
 	UserService dao;
-
-	@Autowired
-	UserConverter userMapper;
 
 	@GetMapping(path = "/Hello")
 	@ResponseBody
@@ -148,15 +141,16 @@ public class UserController {
 	 * ResponseEntity<>(roleDto, HttpStatus.OK); }
 	 */
 
-	@PatchMapping(path = "/{id}")
-	public ResponseEntity<User> updateCustomer(@PathVariable int id, @RequestBody JsonPatch patch)
-			throws JsonProcessingException, JsonPatchException {
-		dao.partialUserUpdate(id, patch);
-		return null;
-	}
+//	@PatchMapping(path = "/{id}")
+//	public ResponseEntity<User> updateCustomer(@PathVariable int id, @RequestBody JsonPatch patch)
+//			throws JsonProcessingException, JsonPatchException {
+//		dao.partialUserUpdate(id, patch);
+//		return null;
+//	}
 
 	@PatchMapping("/update/{id}/{gender}")
-	public ResponseEntity<Object> updatePartially(@PathVariable("id") int id, @PathVariable("gender") String gender) {
+	public ResponseEntity<Object> updateUserPartially(@PathVariable("id") int id,
+			@PathVariable("gender") String gender) {
 
 		UserDto userDto = dao.partialUpdate(id, gender);
 		return new ResponseEntity<>(userDto, HttpStatus.ACCEPTED);
