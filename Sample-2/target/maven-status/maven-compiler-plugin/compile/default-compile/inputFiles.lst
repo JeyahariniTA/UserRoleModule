@@ -1,4 +1,6 @@
 C:\Users\Windows\Documents\workspace-spring-tool-suite-4-4.15.3.RELEASE\Sample-2\src\main\java\com\example\repository\UserJPARepository.java
+C:\Users\Windows\Documents\workspace-spring-tool-suite-4-4.15.3.RELEASE\Sample-2\src\main\java\com\example\config\VaultConfiguration.java
+C:\Users\Windows\Documents\workspace-spring-tool-suite-4-4.15.3.RELEASE\Sample-2\src\main\java\com\example\UserModuleApplication.java
 C:\Users\Windows\Documents\workspace-spring-tool-suite-4-4.15.3.RELEASE\Sample-2\src\main\java\com\example\util\JwtTokenUtil.java
 C:\Users\Windows\Documents\workspace-spring-tool-suite-4-4.15.3.RELEASE\Sample-2\src\main\java\com\example\controller\JwtAuthenticationController.java
 C:\Users\Windows\Documents\workspace-spring-tool-suite-4-4.15.3.RELEASE\Sample-2\src\main\java\com\example\config\EncodeConfig.java
@@ -14,18 +16,15 @@ C:\Users\Windows\Documents\workspace-spring-tool-suite-4-4.15.3.RELEASE\Sample-2
 C:\Users\Windows\Documents\workspace-spring-tool-suite-4-4.15.3.RELEASE\Sample-2\src\main\java\com\example\service\UserServiceImpl.java
 C:\Users\Windows\Documents\workspace-spring-tool-suite-4-4.15.3.RELEASE\Sample-2\src\main\java\com\example\service\RoleServiceImpl.java
 C:\Users\Windows\Documents\workspace-spring-tool-suite-4-4.15.3.RELEASE\Sample-2\src\main\java\com\example\model\CredentialsDto.java
-C:\Users\Windows\Documents\workspace-spring-tool-suite-4-4.15.3.RELEASE\Sample-2\src\main\java\com\example\Credentials.java
 C:\Users\Windows\Documents\workspace-spring-tool-suite-4-4.15.3.RELEASE\Sample-2\src\main\java\com\example\exception\CustomException.java
 C:\Users\Windows\Documents\workspace-spring-tool-suite-4-4.15.3.RELEASE\Sample-2\src\main\java\com\example\repository\UserRepository.java
 C:\Users\Windows\Documents\workspace-spring-tool-suite-4-4.15.3.RELEASE\Sample-2\src\main\java\com\example\converter\DateConverter.java
 C:\Users\Windows\Documents\workspace-spring-tool-suite-4-4.15.3.RELEASE\Sample-2\src\main\java\com\example\service\JwtUserDetailsService.java
 C:\Users\Windows\Documents\workspace-spring-tool-suite-4-4.15.3.RELEASE\Sample-2\src\main\java\com\example\config\RedisConfig.java
-C:\Users\Windows\Documents\workspace-spring-tool-suite-4-4.15.3.RELEASE\Sample-2\src\main\java\com\example\controller\MessageController.java
 C:\Users\Windows\Documents\workspace-spring-tool-suite-4-4.15.3.RELEASE\Sample-2\src\main\java\com\example\converter\RoleConverter.java
 C:\Users\Windows\Documents\workspace-spring-tool-suite-4-4.15.3.RELEASE\Sample-2\src\main\java\com\example\model\UserDetails.java
 C:\Users\Windows\Documents\workspace-spring-tool-suite-4-4.15.3.RELEASE\Sample-2\src\main\java\com\example\controller\RoleController.java
 C:\Users\Windows\Documents\workspace-spring-tool-suite-4-4.15.3.RELEASE\Sample-2\src\main\java\com\example\repository\AddressRepository.java
-C:\Users\Windows\Documents\workspace-spring-tool-suite-4-4.15.3.RELEASE\Sample-2\src\main\java\com\example\Sample1Application.java
 C:\Users\Windows\Documents\workspace-spring-tool-suite-4-4.15.3.RELEASE\Sample-2\src\main\java\com\example\controller\UserController.java
 C:\Users\Windows\Documents\workspace-spring-tool-suite-4-4.15.3.RELEASE\Sample-2\src\main\java\com\example\model\UserDto.java
 C:\Users\Windows\Documents\workspace-spring-tool-suite-4-4.15.3.RELEASE\Sample-2\src\main\java\com\example\model\Address.java
@@ -35,6 +34,7 @@ C:\Users\Windows\Documents\workspace-spring-tool-suite-4-4.15.3.RELEASE\Sample-2
 C:\Users\Windows\Documents\workspace-spring-tool-suite-4-4.15.3.RELEASE\Sample-2\src\main\java\com\example\auditable\AuditConfiguration.java
 C:\Users\Windows\Documents\workspace-spring-tool-suite-4-4.15.3.RELEASE\Sample-2\src\main\java\com\example\model\JwtResponse.java
 C:\Users\Windows\Documents\workspace-spring-tool-suite-4-4.15.3.RELEASE\Sample-2\src\main\java\com\example\repository\CredentialsRepository.java
+C:\Users\Windows\Documents\workspace-spring-tool-suite-4-4.15.3.RELEASE\Sample-2\src\main\java\com\example\VaultCredentials.java
 C:\Users\Windows\Documents\workspace-spring-tool-suite-4-4.15.3.RELEASE\Sample-2\src\main\java\com\example\model\User.java
 C:\Users\Windows\Documents\workspace-spring-tool-suite-4-4.15.3.RELEASE\Sample-2\src\main\java\com\example\model\JwtRequest.java
 C:\Users\Windows\Documents\workspace-spring-tool-suite-4-4.15.3.RELEASE\Sample-2\src\main\java\com\example\model\Role.java

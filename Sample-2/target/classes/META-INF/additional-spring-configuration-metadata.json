@@ -33,5 +33,10 @@
     "name": "spring.cloud.vault.kv.enabled",
     "type": "java.lang.String",
     "description": "A description for 'spring.cloud.vault.kv.enabled'"
+  },
+  {
+    "name": "spring.cloud.config.discover.enabled",
+    "type": "java.lang.String",
+    "description": "A description for 'spring.cloud.config.discover.enabled'"
   }
 ]}
