@@ -57,10 +57,6 @@ public class RoleServiceImpl implements RoleService {
 	@Override
 	public RoleDto findRoleByUserId(int userId) {
 		return roleConverter.convertRoleToDto(roleRepository.findByUsers_Id(userId)); // Role
-//		role = roleRepository.getReferenceById(userId); //
-//		System.out.println(roleMapper.convertRoleToDto(role)); // return new
-//		RoleDto();
-//		return new RoleDto();
 	}
 
 }
